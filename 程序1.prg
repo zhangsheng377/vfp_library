@@ -1,2 +1,2 @@
 do form µÇÂ¼´°¿Ú.scx
-&&read events
+read events
