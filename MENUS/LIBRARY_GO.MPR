@@ -1,0 +1,70 @@
+*       *********************************************************
+*       *                                                         
+*       * 06/05/16           LIBRARY_GO.MPR             22:48:51  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * 作者名称                                                
+*       *                                                         
+*       * 版权所有 (C) 2016 公司名称                             
+*       * 地址                                                    
+*       * 城市,     邮编                                          
+*       * 国家                                              
+*       *                                                         
+*       * 说明:                                            
+*       * 此程序由 GENMENU 自动生成。    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         设置代码                        
+*       *                                                         
+*       *********************************************************
+*
+
+* This file is a generated, framework-enabling component
+* created by APPBUILDER
+* (c) Microsoft Corporation
+
+
+#INCLUDE [..\LIBRARY_APP.H]
+
+
+*       *********************************************************
+*       *                                                         
+*       *                         菜单定义                        
+*       *                                                         
+*       *********************************************************
+*
+
+
+DEFINE PAD _msm_Go OF _MSYSMENU PROMPT "转至(\<G)" COLOR SCHEME 3 ;
+	BEFORE _MWINDOW ;
+	KEY ALT+G, "ALT+G" ;
+	MESSAGE "定位当前选定的表、临时表或视图"
+ON PAD _msm_Go OF _MSYSMENU ACTIVATE POPUP _mgo
+
+DEFINE POPUP _mgo MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF _mgo PROMPT "第一个(\<T)"
+DEFINE BAR 2 OF _mgo PROMPT "最后一个(\<B)"
+DEFINE BAR 3 OF _mgo PROMPT "下一个(\<N)"
+DEFINE BAR 4 OF _mgo PROMPT "上一个(\<P)"
+DEFINE BAR 5 OF _mgo PROMPT "\-"
+DEFINE BAR 6 OF _mgo PROMPT "转至(\<G)..."
+DEFINE BAR 7 OF _mgo PROMPT "定位(\<L)..."
+DEFINE BAR 8 OF _mgo PROMPT "升序(\<S)"
+DEFINE BAR 9 OF _mgo PROMPT "降序(\<S)"
+DEFINE BAR 10 OF _mgo PROMPT "设置筛选条件(\<F)..."
+ON SELECTION BAR 1 OF _mgo APP_GLOBAL.GoTop()
+ON SELECTION BAR 2 OF _mgo APP_GLOBAL.GoBottom()
+ON SELECTION BAR 3 OF _mgo APP_GLOBAL.GoNext()
+ON SELECTION BAR 4 OF _mgo APP_GLOBAL.GoPrevious()
+ON SELECTION BAR 6 OF _mgo APP_GLOBAL.ShowTableGoToDialog()
+ON SELECTION BAR 7 OF _mgo APP_GLOBAL.ShowTableFindDialog()
+ON SELECTION BAR 8 OF _mgo APP_GLOBAL.DoSort(,,,.F.)
+ON SELECTION BAR 9 OF _mgo APP_GLOBAL.DoSort(,,,.T.)
+ON SELECTION BAR 10 OF _mgo APP_GLOBAL.ShowTableSetFilterDialog()
+
+ON SELECTION POPUP _mgo MESSAGEBOX(APP_FEATURE_NOT_AVAILABLE_LOC,0,APP_GLOBAL.cCaption)
